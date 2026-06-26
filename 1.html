@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Misafir Değerlendirmeleri — Risalet Turizm</title>
+<link rel="stylesheet" href="1.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="app">
+
+  <!-- ============ TOPBAR ============ -->
+  <div class="topbar">
+    <a href="https://risaletturizm.com" class="brand-wrap" target="_blank">
+      <div class="brand-icon">ر</div>
+      <div class="brand-text">
+        <span class="brand-name">Risalet Turizm</span>
+        <span class="brand-sub">Hac &amp; Umre Organizasyonu</span>
+      </div>
+    </a>
+    <div class="nav-switch">
+      <button id="nav-wall" class="active">Tüm Değerlendirmeler</button>
+      <button id="nav-form">Değerlendirme Yap</button>
+    </div>
+  </div>
+
+  <!-- ============ WALL VIEW ============ -->
+  <div class="view active" id="view-wall">
+    <div class="hero">
+      <div class="hero-scene" id="hero-scene" aria-hidden="true">
+        <div class="hero-spin">
+          <div class="star-sq front"></div>
+          <div class="star-sq front b"></div>
+          <div class="star-sq back"></div>
+          <div class="star-sq back b"></div>
+        </div>
+      </div>
+      <div class="floating-elements" aria-hidden="true">
+        <span class="float-el p1">✦</span>
+        <span class="float-el p2">✧</span>
+        <span class="float-el p3">✦</span>
+        <span class="float-el p4">✧</span>
+        <span class="float-el p5">✦</span>
+        <span class="float-el p6">✧</span>
+        <span class="float-el p7">✧</span>
+      </div>
+      <div class="eyebrow">Misafir Değerlendirmeleri</div>
+      <h1>Misafirlerimizin <span>Deneyimleri</span> ve <span>Görüşleri</span></h1>
+      <p>Risalet Turizm güvencesiyle umre ve hac yolculuğuna çıkan misafirlerimizin özgün ve onaylı değerlendirmeleri.</p>
+      <div class="seal-wrap">
+        <div class="seal">
+          <div class="score" id="overall-score">—</div>
+          <div class="stars-d" id="overall-stars">☆☆☆☆☆</div>
+          <div class="cnt" id="overall-count">0 YORUM</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ STATS BAR ============ -->
+    <div class="stats-bar">
+      <div class="stat-item">
+        <div class="stat-num" data-target="10000" data-suffix="+" data-format="k">0</div>
+        <div class="stat-label">Umre Ziyareti</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <div class="stat-num" data-target="99" data-suffix="%">0</div>
+        <div class="stat-label">Memnuniyet</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <div class="stat-num" data-target="100" data-suffix="+">0</div>
+        <div class="stat-label">Umre Programı</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <div class="stat-num" data-target="25" data-suffix="+">0</div>
+        <div class="stat-label">Yıllık Tecrübe</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div id="config-warn" class="config-banner">
+        <span>⚠️</span>
+        <span>
+          <strong>Firebase yapılandırması gerekli</strong>
+          HTML dosyasını açın, üstteki <code>firebaseConfig</code> bölümüne kendi Firebase proje bilgilerinizi girin. 
+          <a href="https://console.firebase.google.com" target="_blank">Firebase Console →</a>
+        </span>
+      </div>
+
+      <div class="section-title">Kategori bazında ortalamalar</div>
+      <div class="gauges" id="gauges"></div>
+
+      <div class="filters" id="filters">
+        <button data-min="0" class="active">Tümü</button>
+        <button data-min="5">5 yıldız</button>
+        <button data-min="4">4 yıldız ve üzeri</button>
+        <button data-min="3">3 yıldız ve üzeri</button>
+      </div>
+
+      <div id="review-area">
+        <div class="loading-wrap">
+          <div class="spinner"></div>
+          <p style="color:var(--ink-soft);font-size:14px;">Değerlendirmeler yükleniyor…</p>
+        </div>
+      </div>
+
+      <div class="cta-band">
+        <h3>Web sitemizi ziyaret edin</h3>
+        <p>Umre ve hac turları, fiyatlar ve detaylı bilgi için web sitemizi ziyaret edebilirsiniz.</p>
+        <a href="https://risaletturizm.com" target="_blank" class="btn ghost">risaletturizm.com →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ FORM VIEW ============ -->
+  <div class="view" id="view-form">
+    <div class="form-wrap">
+      <div class="eyebrow">Misafir Değerlendirmeleri</div>
+      <h1>Yolculuğunuz nasıl geçti?</h1>
+      <p>Birkaç dakikanızı ayırın ve deneyiminizi paylaşın. Değerlendirmeniz, sizden sonra yola çıkacak misafirlerimize büyük katkı sağlayacak.</p>
+
+      <form id="review-form" class="form-card">
+        <div class="field">
+          <label for="f-name">Adınız Soyadınız</label>
+          <input type="text" id="f-name" placeholder="Anonim olarak da gönderebilirsiniz">
+        </div>
+
+        <div class="field" id="field-trip">
+          <label for="f-trip">Tur Tarihi / Adı <span style="color:#c0392b">*</span></label>
+          <input type="text" id="f-trip" placeholder="Örn: Mart 2026 Umre Turu">
+          <div class="error-text">Lütfen tur tarihi veya adını girin.</div>
+        </div>
+
+        <div class="field" id="field-genel">
+          <label>Genel Deneyim <span style="color:#c0392b">*</span></label>
+          <div class="star-row">
+            <span class="cat-label">Yolculuğunuzu bir bütün olarak nasıl değerlendirirsiniz?</span>
+            <div class="stars-input">
+              <input type="radio" name="genel" id="genel-5" value="5"><label for="genel-5">★</label>
+              <input type="radio" name="genel" id="genel-4" value="4"><label for="genel-4">★</label>
+              <input type="radio" name="genel" id="genel-3" value="3"><label for="genel-3">★</label>
+              <input type="radio" name="genel" id="genel-2" value="2"><label for="genel-2">★</label>
+              <input type="radio" name="genel" id="genel-1" value="1"><label for="genel-1">★</label>
+            </div>
+          </div>
+          <div class="error-text">Lütfen genel bir puan verin.</div>
+        </div>
+
+        <div class="field">
+          <label>Detaylı Puanlama</label>
+          <div class="star-row" style="margin-bottom:14px;">
+            <span class="cat-label">Otel</span>
+            <div class="stars-input">
+              <input type="radio" name="otel" id="otel-5" value="5"><label for="otel-5">★</label>
+              <input type="radio" name="otel" id="otel-4" value="4"><label for="otel-4">★</label>
+              <input type="radio" name="otel" id="otel-3" value="3"><label for="otel-3">★</label>
+              <input type="radio" name="otel" id="otel-2" value="2"><label for="otel-2">★</label>
+              <input type="radio" name="otel" id="otel-1" value="1"><label for="otel-1">★</label>
+            </div>
+          </div>
+          <div class="star-row" style="margin-bottom:14px;">
+            <span class="cat-label">Ulaşım</span>
+            <div class="stars-input">
+              <input type="radio" name="ulasim" id="ulasim-5" value="5"><label for="ulasim-5">★</label>
+              <input type="radio" name="ulasim" id="ulasim-4" value="4"><label for="ulasim-4">★</label>
+              <input type="radio" name="ulasim" id="ulasim-3" value="3"><label for="ulasim-3">★</label>
+              <input type="radio" name="ulasim" id="ulasim-2" value="2"><label for="ulasim-2">★</label>
+              <input type="radio" name="ulasim" id="ulasim-1" value="1"><label for="ulasim-1">★</label>
+            </div>
+          </div>
+          <div class="star-row" style="margin-bottom:14px;">
+            <span class="cat-label">Rehberlik</span>
+            <div class="stars-input">
+              <input type="radio" name="rehberlik" id="rehberlik-5" value="5"><label for="rehberlik-5">★</label>
+              <input type="radio" name="rehberlik" id="rehberlik-4" value="4"><label for="rehberlik-4">★</label>
+              <input type="radio" name="rehberlik" id="rehberlik-3" value="3"><label for="rehberlik-3">★</label>
+              <input type="radio" name="rehberlik" id="rehberlik-2" value="2"><label for="rehberlik-2">★</label>
+              <input type="radio" name="rehberlik" id="rehberlik-1" value="1"><label for="rehberlik-1">★</label>
+            </div>
+          </div>
+          <div class="star-row" style="margin-bottom:14px;">
+            <span class="cat-label">Yemek</span>
+            <div class="stars-input">
+              <input type="radio" name="yemek" id="yemek-5" value="5"><label for="yemek-5">★</label>
+              <input type="radio" name="yemek" id="yemek-4" value="4"><label for="yemek-4">★</label>
+              <input type="radio" name="yemek" id="yemek-3" value="3"><label for="yemek-3">★</label>
+              <input type="radio" name="yemek" id="yemek-2" value="2"><label for="yemek-2">★</label>
+              <input type="radio" name="yemek" id="yemek-1" value="1"><label for="yemek-1">★</label>
+            </div>
+          </div>
+          <div class="star-row">
+            <span class="cat-label">Organizasyon &amp; Vize</span>
+            <div class="stars-input">
+              <input type="radio" name="organizasyon" id="org-5" value="5"><label for="org-5">★</label>
+              <input type="radio" name="organizasyon" id="org-4" value="4"><label for="org-4">★</label>
+              <input type="radio" name="organizasyon" id="org-3" value="3"><label for="org-3">★</label>
+              <input type="radio" name="organizasyon" id="org-2" value="2"><label for="org-2">★</label>
+              <input type="radio" name="organizasyon" id="org-1" value="1"><label for="org-1">★</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="field" id="field-text">
+          <label for="f-text">Yorumunuz</label>
+          <textarea id="f-text" placeholder="Yolculuğunuzu anlatın: en güzel an, otel, rehberiniz, her şeyi yazabilirsiniz."></textarea>
+          <div class="error-text">Yorumunuz en az 10 karakter olmalı.</div>
+        </div>
+
+        <button type="submit" class="btn submit-btn" id="submit-btn">Değerlendirmeyi Gönder</button>
+      </form>
+
+      <div class="form-card success-card" id="success-card" style="display:none;">
+        <div class="success-icon">✓</div>
+        <h2>Teşekkürler!</h2>
+        <p>Değerlendirmeniz kaydedildi. Yolculuğunuzu bizimle paylaştığınız için minnettarız.</p>
+        <button class="btn green" id="go-to-wall">Tüm Değerlendirmeleri Gör →</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    © 2025 <a href="https://risaletturizm.com" target="_blank">Risalet Turizm</a> — Misafir Değerlendirme Sistemi &nbsp;|&nbsp; TÜRSAB Üyesidir
+  </footer>
+</div>
+
+<!-- ============ FIREBASE ============ -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import {
+    getFirestore, collection, getDocs, addDoc,
+    query, orderBy, serverTimestamp
+  } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+  /* ▼▼▼  KENDİ FIREBASE BİLGİLERİNİZİ BURAYA GİRİN  ▼▼▼ */
+  const firebaseConfig = {
+    apiKey:            "AIzaSyASjwPZNIZBKnVfLkCW5sqNMlhFf94jtUA",
+    authDomain:        "deger-65e3d.firebaseapp.com",
+    projectId:         "deger-65e3d",
+    storageBucket:     "deger-65e3d.firebasestorage.app",
+    messagingSenderId: "201534185607",
+    appId:             "1:201534185607:web:dee552910ea73077f55822",
+    measurementId:     "G-W60HC3JJ9X"
+  };
+  /* ▲▲▲  ▲▲▲ */
+
+  const app = initializeApp(firebaseConfig);
+  const db  = getFirestore(app);
+
+  window._firestore = { db, collection, getDocs, addDoc, query, orderBy, serverTimestamp };
+</script>
+
+<script src="1.js"></script>
+</body>
+</html>

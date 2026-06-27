@@ -127,7 +127,10 @@ function showView(name) {
     outgoing.style.opacity = '';
     outgoing.style.transform = '';
 
-    if (name === 'wall') loadReviews();
+    if (name === 'wall') {
+      document.getElementById('review-area').innerHTML = `<div class="loading-wrap"><div class="spinner"></div><p style="color:var(--ink-soft);font-size:14px;">Değerlendirmeler yükleniyor…</p></div>`;
+      loadReviews();
+    }
 
     incoming.style.opacity = '0';
     incoming.style.transform = 'translateY(-10px)';

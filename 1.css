@@ -146,8 +146,20 @@ button { font-family: inherit; cursor: pointer; }
   .filters button { font-size: 12px; padding: 6px 12px; }
 }
 
-.view { display: none; }
-.view.active { display: block; }
+.view {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  min-height: 100vh;
+}
+.view.active {
+  position: relative;
+  opacity: 1;
+  pointer-events: auto;
+  visibility: visible;
+}
 
 /* ──── HERO ──── */
 .hero {

@@ -112,8 +112,12 @@ function showView(name) {
   if (!outgoing || outgoing === incoming) {
     incoming.classList.add('active');
     window.scrollTo({ top: 0, behavior: 'instant' });
-    if (name === 'wall') loadReviews();
+    if (name === 'wall') { animateStatCounters(); loadReviews(); }
     return;
+  }
+
+  if (name === 'wall') {
+    document.getElementById('review-area').innerHTML = `<div class="loading-wrap"><div class="spinner"></div><p style="color:var(--ink-soft);font-size:14px;">Değerlendirmeler yükleniyor…</p></div>`;
   }
 
   // Fade-slide out
@@ -127,16 +131,11 @@ function showView(name) {
     outgoing.style.opacity = '';
     outgoing.style.transform = '';
 
-    if (name === 'wall') {
-      document.getElementById('review-area').innerHTML = `<div class="loading-wrap"><div class="spinner"></div><p style="color:var(--ink-soft);font-size:14px;">Değerlendirmeler yükleniyor…</p></div>`;
-      loadReviews();
-    }
-
-    incoming.style.opacity = '0';
+    // Gelen sayfayı hazırla
     incoming.style.transform = 'translateY(-10px)';
     incoming.classList.add('active');
 
-    // Force reflow
+    // Force reflow — tarayıcının layout hesaplamasını zorla
     incoming.getBoundingClientRect();
 
     incoming.style.transition = 'opacity 0.28s ease, transform 0.28s ease';
@@ -144,9 +143,10 @@ function showView(name) {
     incoming.style.transform = 'translateY(0)';
     window.scrollTo({ top: 0, behavior: 'instant' });
 
+    if (name === 'wall') { animateStatCounters(); loadReviews(); }
+
     setTimeout(() => {
       incoming.style.transition = '';
-      incoming.style.opacity = '';
       incoming.style.transform = '';
     }, 300);
   }, 220);

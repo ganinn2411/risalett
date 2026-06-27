@@ -112,7 +112,7 @@ function showView(name) {
   if (!outgoing || outgoing === incoming) {
     incoming.classList.add('active');
     window.scrollTo({ top: 0, behavior: 'instant' });
-    if (name === 'wall') renderWall();
+    if (name === 'wall') loadReviews();
     return;
   }
 
@@ -127,7 +127,7 @@ function showView(name) {
     outgoing.style.opacity = '';
     outgoing.style.transform = '';
 
-    if (name === 'wall') renderWall();
+    if (name === 'wall') loadReviews();
 
     incoming.style.opacity = '0';
     incoming.style.transform = 'translateY(-10px)';
